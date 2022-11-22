@@ -56,7 +56,7 @@ data = [["Monday", 1022, 43], ["Monday", 1023, 30], ["Tuesday", 1034, 45], ["Sun
 		["Tuesday", 1234, 45], ["Monday", 1122, 43], ["Thursday", 1223, 30], ["Saturday", 1234, 45], 
 		["Monday", 1122, 43], ["Friday", 1223, 30], ["Sunday", 1223, 30]]
 
-
+testdf = pd.DataFrame()
 
 button1, button2, button3 = st.columns(3)
 with button1:
