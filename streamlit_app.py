@@ -24,7 +24,7 @@ for doc in crowd_ref.stream():
 		dotw = post["dayoftheweek"]
 		time = post["time"]
 		num = post["num"]
-		crowd_data.append([dotw, time, num])
+		crowd_data.append([dotw, int(time), num])
 
 st.sidebar.write(crowd_data)
 
@@ -84,7 +84,11 @@ temp_df = chart_df
 temp_df['time_range'] = times()
 for x in range(7):
 	gb = testdf.groupby(testdf['day'])
-	dotw_df[x] = gb.get_group(dotw[x])
+	try:
+		dotw_df[x] = gb.get_group(dotw[x])
+	except:
+		continue
+	
 	
 	specific_day_df = dotw_df[x]
 
