@@ -50,29 +50,29 @@ def times():
 			n+=70
 	return timelist 
 
-data = [["Monday", 1022, 43], ["Monday", 1023, 30], ["Tuesday", 1034, 45], ["Sunday", 1122, 42], 
+s_data = [["Monday", 1022, 43], ["Monday", 1023, 30], ["Tuesday", 1034, 45], ["Sunday", 1122, 42], 
 		["Tuesday", 1123, 30], ["Tuesday", 1234, 45], ["Monday", 1122, 43], ["Tuesday", 1223, 30], 
 		["Monday", 1334, 45], ["Tuesday", 1234, 45], ["Sunday", 1122, 43], ["Wednesday", 1223, 30],
 		["Tuesday", 1234, 45], ["Monday", 1122, 43], ["Thursday", 1223, 30], ["Saturday", 1234, 45], 
 		["Monday", 1122, 43], ["Friday", 1223, 30], ["Sunday", 1223, 30]]
 
-testdf = pd.DataFrame()
+data = crowd_data
 
 button1, button2, button3 = st.columns(3)
 with button1:
 	sample_data = st.button("Use Sample Data",  key="sample data")
 	if sample_data:
-		testdf = pd.DataFrame(data, columns=['day', 'time', 'num'])
-		st.experimental_rerun()
+		data = s_data
 with button2:
 	db_data = st.button("Use Live Data", key="live data")
 	if db_data:
-		testdf = pd.DataFrame(crowd_data, columns=['day', 'time', 'num'])
-		st.experimental_rerun()
+		data=crowd_data
 with button3:
 	refresh = st.button("Refresh Data", key="refesh data")
 	if refresh:
 		st.experimental_rerun()
+
+testdf = pd.DataFrame(data, columns=['day', 'time', 'num'])
 #st.write(testdf)
 
 dotw_df = [0] * 7
