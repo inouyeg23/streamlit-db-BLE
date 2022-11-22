@@ -58,7 +58,7 @@ data = [["Monday", 1022, 43], ["Monday", 1023, 30], ["Tuesday", 1034, 45], ["Sun
 
 
 
-button1, button2, button3 = st.columns(gap="small")
+button1, button2, button3 = st.columns(3)
 with button1:
 	sample_data = st.button("Use Sample Data",  key="sample data")
 	if sample_data:
