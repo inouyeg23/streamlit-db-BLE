@@ -7,7 +7,7 @@ import math
 import plotly.express as px
 import numpy as np
 
-st.set_page_config(page_title="CS 427 IoT Project", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="CS 427 IoT Project", initial_sidebar_state="collapsed", layout="wide")
 
 #db = firestore.Client.from_service_account_json("firestore-key.json")
 
@@ -56,7 +56,23 @@ data = [["Monday", 1022, 43], ["Monday", 1023, 30], ["Tuesday", 1034, 45], ["Sun
 		["Tuesday", 1234, 45], ["Monday", 1122, 43], ["Thursday", 1223, 30], ["Saturday", 1234, 45], 
 		["Monday", 1122, 43], ["Friday", 1223, 30], ["Sunday", 1223, 30]]
 
-testdf = pd.DataFrame(data, columns=['day', 'time', 'num'])
+
+
+button1, button2, button3 = st.columns(gap="small")
+with button1:
+	sample_data = st.button("Use Sample Data",  key="sample data")
+	if sample_data:
+		testdf = pd.DataFrame(data, columns=['day', 'time', 'num'])
+		st.experimental_rerun()
+with button2:
+	db_data = st.button("Use Live Data", key="live data")
+	if db_data:
+		testdf = pd.DataFrame(crowd_data, columns=['day', 'time', 'num'])
+		st.experimental_rerun()
+with button3:
+	refresh = st.button("Refresh Data", key="refesh data")
+	if refresh:
+		st.experimental_rerun()
 #st.write(testdf)
 
 dotw_df = [0] * 7
@@ -103,6 +119,7 @@ fig2 = px.bar(chart_df, x="time_range", y="avg_num", color="dayoftheweek",
                      "avg_num": "Number of People",
                      "dayoftheweek": "Day of the Week"
                  },title="How Crowded is it?")
+
 
 col1, col2 = st.columns([1,3], gap="small")
 with col1:
