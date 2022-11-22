@@ -26,8 +26,6 @@ for doc in crowd_ref.stream():
 		num = post["num"]
 		crowd_data.append([dotw, int(time), num])
 
-st.sidebar.write(crowd_data)
-
 def convert_num_to_time(i):
 	if i > 999:
 		i = str(i)
