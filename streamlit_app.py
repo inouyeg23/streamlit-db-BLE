@@ -20,11 +20,16 @@ crowd_data = []
 crowd_ref = db.collection("crowd").document("crowd_doc").collection("crowd_col")
 for doc in crowd_ref.stream():
 	post = doc.to_dict()
-	if len(post["dayoftheweek"]) != 0:
-		dotw = post["dayoftheweek"]
-		time = post["time"]
-		num = post["num"]
-		crowd_data.append([dotw, int(time), num])
+	try:
+		if len(post["dayoftheweek"]) != 0:
+			dotw = post["dayoftheweek"]
+			time = post["time"]
+			num = post["num"]
+			crowd_data.append([dotw, int(time), num])
+	except:
+		continue
+
+	
 
 def convert_num_to_time(i):
 	if i > 999:
